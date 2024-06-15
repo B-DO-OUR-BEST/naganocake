@@ -1,0 +1,44 @@
+<li>
+  <%= link_to root_path, class: 'btn btn-secondary' do %>
+    About
+  <% end %>
+</li>
+<li>
+  <%=  link_to items_path, class: 'btn btn-secondary' %>
+    商品一覧
+  <% end %>
+</li>
+<li>
+  <%=  link_to cart_items_path, class: 'btn btn-secondary' %>
+    カート
+  <% end %>
+</li>
+<li>
+  <%=  link_to destroy_customer_session_path, class: 'btn btn-secondary' %>
+    ログアウト
+  <% end %>
+</li>
+
+<% else %>
+
+<li>
+  <%= link_to root_path, class: 'btn btn-secondary' do %>
+    About
+  <% end %>
+</li>
+<li>
+  <%=  link_to items_path, class: 'btn btn-secondary' %>
+    商品一覧
+  <% end %>
+</li>
+<li>
+  <%=  link_to new_customer_registration_path, class: 'btn btn-secondary' %>
+    新規登録
+  <% end %>
+</li>
+<li>
+  <%=  link_to new_customer_session_path, class: 'btn btn-secondary' %>
+    ログイン
+  <% end %>
+</li>
+

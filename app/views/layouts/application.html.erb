@@ -11,6 +11,30 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar bg-body-tertiary">
+        <div class="container">
+          <a class="navbar-brand" href="/"><span>LOGO</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <% if admin_signed_in? %>
+            <!-- 管理者共通ファイル --> -->
+
+          <% elsif customer_signed_in? %>
+            <!-- カスタマー共通ファイル -->
+            <!-- サインイン前カスタマー共通ファイル -->
+
+          <% end %>
+
+          end
+
+
+        </div>
+
+    </header>
+
+
     <%= yield %>
   </body>
 </html>

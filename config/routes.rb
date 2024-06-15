@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  
+
   scope module: :public do
-    
-    resource :homes, only: [:top,:about] 
+
+  root "homes#top"
+  get "/about"=>"homes#about"
+
     resources :items, only: [:index,:show]
     resource :customers, only: [:show,:edit,:update] do
       member do
@@ -19,13 +21,13 @@ Rails.application.routes.draw do
       member do
         get :confirm
         get :thanks
-      end 
+      end
     end
-    resources :addresses, only: [:index, :edit, :create, :update, :destroy]  
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 
   namespace :admin do
-    
+
     resource :homes, only: [:top]
     resources :items, only: [:index,:new,:create,:show,:edit,:update]
     resources :genres, only: [:index,:create,:edit,:update]
