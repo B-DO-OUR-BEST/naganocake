@@ -1,0 +1,36 @@
+<!--管理者ページのヘッダーです。-->
+
+<ul>
+  <li>
+    <%= link_to admin_items_path do %>
+      商品一覧
+    <% end %>
+  </li>
+  <li>
+    <%= link_to admin_customers_path do %>
+      会員一覧
+    <% end %>
+  </li>
+  <li>
+    <%= link_to admin_root_path do %>
+      注文履歴一覧
+    <% end %>
+  </li>
+  <li>
+    <%= link_to admin_genres_path do %>
+      ジャンル一覧
+    <% end %>
+  </li>
+  <li>
+    <%= link_to destroy_admin_session_path, method: :delete do %>
+      ログアウト
+    <% end %>
+  </li>
+</ul>
+
+
+  <!--admin_items GET    /admin/items(.:format)                                   admin/items#index-->
+  <!--admin_customers GET    /admin/customers(.:format)                           admin/customers#index-->
+  <!--admin_root GET    /admin(.:format)                                          admin/homes#top-->
+  <!--admin_genres GET    /admin/genres(.:format)                                 admin/genres#index-->
+  <!--destroy_admin_session DELETE /admins/sign_out(.:format)                     admin/sessions#destroy-->
