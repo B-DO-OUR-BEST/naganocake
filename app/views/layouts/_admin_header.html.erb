@@ -2,26 +2,31 @@
 
 <ul>
   <li>
+    <!--admin_items  GET  /admin/items  admin/items#index-->
     <%= link_to admin_items_path do %>
       商品一覧
     <% end %>
   </li>
   <li>
+    <!--admin_customers  GET  /admin/customers  admin/customers#index-->
     <%= link_to admin_customers_path do %>
       会員一覧
     <% end %>
   </li>
   <li>
+    <!--admin_root  GET  /admin  admin/homes#top-->
     <%= link_to admin_root_path do %>
       注文履歴一覧
     <% end %>
   </li>
   <li>
+    <!--admin_genres  GET  /admin/genres(.:format)  admin/genres#index-->
     <%= link_to admin_genres_path do %>
       ジャンル一覧
     <% end %>
   </li>
   <li>
+    <!--destroy_admin_session  DELETE  /admins/sign_out(.:format)  admin/sessions#destroyまだつくっていません。-->
     <%= link_to destroy_admin_session_path, method: :delete do %>
       ログアウト
     <% end %>
@@ -29,8 +34,3 @@
 </ul>
 
 
-  <!--admin_items GET    /admin/items(.:format)                                   admin/items#index-->
-  <!--admin_customers GET    /admin/customers(.:format)                           admin/customers#index-->
-  <!--admin_root GET    /admin(.:format)                                          admin/homes#top-->
-  <!--admin_genres GET    /admin/genres(.:format)                                 admin/genres#index-->
-  <!--destroy_admin_session DELETE /admins/sign_out(.:format)                     admin/sessions#destroy-->
