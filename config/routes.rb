@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
 
-    resource :homes, only: [:top,:about]
+    get '/', to: 'homes#top'
+    get '/about', to: 'homes#about'
     resources :items, only: [:index,:show]
     resource :customers, only: [:show,:edit,:update] do
       member do
