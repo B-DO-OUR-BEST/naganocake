@@ -12,28 +12,22 @@
 
   <body>
     <header>
-      <nav class="navbar bg-body-tertiary">
-        <div class="container">
-          <a class="navbar-brand" href="/"><span>LOGO</span></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <% if admin_signed_in? %>
-            <!-- 管理者共通ファイル --> -->
+  <nav class="navbar bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="/"><span>LOGO</span></a>
+      <div class=" d-flex justify-content-end">
+      <% if admin_signed_in? %>
+        <!-- 管理者用のヘッダー（後で作成予定） -->
+      <% elsif customer_signed_in? %>
+        <%= render 'layouts/publicheader' %>
+      <% else %>
+        <%= render 'layouts/publicheader_guest' %>
+      <% end %>
 
-          <% elsif customer_signed_in? %>
-            <!-- カスタマー共通ファイル -->
-            <!-- サインイン前カスタマー共通ファイル -->
-
-          <% end %>
-
-          end
-
-
-        </div>
-
-    </header>
-
+</div>
+    </div>
+  </nav>
+</header>
 
     <%= yield %>
   </body>

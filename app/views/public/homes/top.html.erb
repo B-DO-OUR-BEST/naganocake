@@ -1,2 +1,56 @@
-<h1>Publics::Homes#top</h1>
-<p>Find me in app/views/publics/homes/top.html.erb</p>
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-3 mr-5">
+        ジャンル
+      </div>
+      <div class="col-7 pr-5">
+        <div class="row">
+          <%= image_tag("14.jpg", size: "450x300") %></div>
+
+          <h4><strong>新着商品</strong></h4>
+          <div class="row">
+          <br>
+
+          <% @items.each do |item| %>
+          <div class="col-3">
+            <%= link_to(item) do %>
+              <%= image_tag item.get_profile_image, size: '50x50' %>
+              <%= item.name %>
+              <%= item.price %>
+            <% end %>
+          </div>
+
+      <!--  <div class="col">
+          <%= link_to image_tag("1.jpg", size: "120x80"), root_path %>
+          <div class="card-body">
+            <h5 class="card-title">cake</h5>
+            <p class="card-text">￥3,500</p>
+          </div>
+        </div>
+        <div class="col">
+          <%= link_to image_tag("1.jpg", size: "120x80"), root_path %>
+          <div class="card-body">
+            <h5 class="card-title">cake</h5>
+            <p class="card-text">￥3,500</p>
+          </div>
+        </div>
+        <div class="col">
+          <%= link_to image_tag("1.jpg", size: "120x80"), root_path %>
+          <div class="card-body">
+            <h5 class="card-title">cake</h5>
+            <p class="card-text">￥3,500</p>
+          </div>
+        </div>
+        <div class="col">
+          <%= link_to image_tag("1.jpg", size: "120x80"), root_path %>
+          <div class="card-body">
+            <h5 class="card-title">cake</h5>
+            <p class="card-text">￥3,500</p>
+          </div>
+        </div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+ </div>
