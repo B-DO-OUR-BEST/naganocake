@@ -6,3 +6,31 @@
 ＋ボタン
 商品名はリンク
 
+<h3>商品一覧</h3>
+<%= link_to new_admin_item_path, class: "btn btn-secondary rounded-circle" do %>
+  +
+<% end %>
+
+<thead>
+  <th>商品ID</th>
+  <th>商品名</th>
+  <th>税抜価格</th>
+  <th>ジャンル</th>
+  <th>ステータス</th>
+</thead>
+
+<tbody>
+  <%= @items.each do |item| %>
+  <td><%= item.id %></td>
+  <td>
+    <!--admin_items GET /admin/items(.:format)  admin/items#index-->
+    <%= link_to admin_items_path(item.id) do %>
+      <%= item.name %>
+    <% end %>
+  </td>
+  <td><%= item.price %></td>
+  <td><%= item.genre_id %></td>
+  <td><%= item.is_active %></td>
+</tbody>
+
+<%= pagenate @items %>
