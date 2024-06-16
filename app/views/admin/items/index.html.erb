@@ -1,36 +1,39 @@
-<!--Admin::Items#index-->
-<!--Find me in app/views/admin/items/index.html.erb-->
-
-登録されている商品一覧表示
-商品ID、商品名、税抜き価格、ジャンル、販売ステータス
-＋ボタン
-商品名はリンク
-
 <h3>商品一覧</h3>
 <%= link_to new_admin_item_path, class: "btn btn-secondary rounded-circle" do %>
   +
 <% end %>
 
 <thead>
-  <th>商品ID</th>
-  <th>商品名</th>
-  <th>税抜価格</th>
-  <th>ジャンル</th>
-  <th>ステータス</th>
+  <tr>
+    <th>商品ID</th>
+    <th>商品名</th>
+    <th>税抜価格</th>
+    <th>ジャンル</th>
+    <th>ステータス</th>
+  </tr>
 </thead>
 
 <tbody>
-  <%= @items.each do |item| %>
-  <td><%= item.id %></td>
-  <td>
-    <!--admin_items GET /admin/items(.:format)  admin/items#index-->
-    <%= link_to admin_items_path(item.id) do %>
-      <%= item.name %>
-    <% end %>
-  </td>
-  <td><%= item.price %></td>
-  <td><%= item.genre_id %></td>
-  <td><%= item.is_active %></td>
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td>
+        <!--商品詳細ページのルーティングは→ admin_item GET /admin/items/:id(.:format)      admin/items#show-->
+        <%= link_to admin_item_path(item.id) do %>
+          <%= item.name %>
+        <% end %>
+      </td>
+      <td><%= item.price %></td>
+      <td><%= item.genre.name %></td>
+      <td>
+        <% if item.is_active %>
+          <p class="text-success"><strong>販売中</strong></p>
+        <% else %>
+          <p class="text-secondary"><strong>販売停止中</strong></p>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
 </tbody>
 
-<%= pagenate @items %>
+<%= paginate @items %>
