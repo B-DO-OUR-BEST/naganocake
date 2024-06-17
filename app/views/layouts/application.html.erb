@@ -11,6 +11,21 @@
   </head>
 
   <body>
+    <header>
+    <div class="container ">
+      <%= link_to "LOGO", root_path %>
+        <div class=" d-flex justify-content-end">
+      <% if admin_signed_in? %>
+        <!-- 管理者用のヘッダー（後で作成予定） -->
+      <% elsif customer_signed_in? %>
+        <%= render 'layouts/publicheader' %>
+      <% else %>
+        <%= render 'layouts/publicheader_guest' %>
+      <% end %>
+
+</div>
+    </div>
+</header>
     <!--く%= render 'layouts/admin_header' %>管理者用ヘッダー確認用のものです。-->
     <%= yield %>
   </body>
