@@ -12,10 +12,9 @@
 
   <body>
     <header>
-  <nav class="navbar bg-body-tertiary">
-    <div class="container">
-      <a class="navbar-brand" href="/"><span>LOGO</span></a>
-      <div class=" d-flex justify-content-end">
+    <div class="container ">
+      <%= link_to "LOGO", root_path %>
+        <div class=" d-flex justify-content-end">
       <% if admin_signed_in? %>
         <!-- 管理者用のヘッダー（後で作成予定） -->
       <% elsif customer_signed_in? %>
@@ -26,7 +25,6 @@
 
 </div>
     </div>
-  </nav>
 </header>
 
     <%= yield %>
