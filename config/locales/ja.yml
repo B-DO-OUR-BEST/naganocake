@@ -1,6 +1,6 @@
+ja:
 
-
-activerecord:
+  activerecord:
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
