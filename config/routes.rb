@@ -42,7 +42,7 @@ Rails.application.routes.draw do
       sessions: 'public/sessions',
   }
     
-  devise_for :admins, controllers: {
+  devise_for :admin, controllers: {
       sessions: 'admin/sessions',
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

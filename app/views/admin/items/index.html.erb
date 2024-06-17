@@ -1,2 +1,43 @@
-管理者用、商品一覧ページです。
-ルーティング確認のため作成しました。
+<h3>商品一覧</h3>
+<div>
+  <%= link_to new_admin_item_path, class: "btn btn-secondary rounded-circle" do %>
+    +
+  <% end %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td>
+          <!--商品詳細ページのルーティングは→ admin_item GET /admin/items/:id(.:format)      admin/items#show-->
+          <%= link_to admin_item_path(item.id) do %>
+            <%= item.name %>
+          <% end %>
+        </td>
+        <td><%= item.price %></td>
+        <td><%= item.genre.name %></td>
+        <td>
+          <% if item.is_active %>
+            <p class="text-success"><strong>販売中</strong></p>
+          <% else %>
+            <p class="text-secondary"><strong>販売停止中</strong></p>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @items %>
