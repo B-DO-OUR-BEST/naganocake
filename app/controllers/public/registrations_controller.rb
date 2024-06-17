@@ -6,13 +6,18 @@ class Publics::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   def new
-    
+    @customers = Customers.new
   end
   # GET /resource/sign_up
   # def new
   #   super
   # end
 
+  def create
+    @customers = Customers.new(params[:customers])
+    @customer.save
+    redirect_to customers_path
+  end
   # POST /resource
   # def create
   #   super
