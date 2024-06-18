@@ -1,2 +1,20 @@
-<h1>Publics::Items#show</h1>
-<p>Find me in app/views/publics/items/show.html.erb</p>
+<div class="container p-5">
+  <div class="col-5">imege</div>
+    <div class="col-7">
+      <div class="row">
+        <h3><%#= @item.name %></h3>
+        <p><%#= @item.introduction %></p>
+        <h4><%#= @item.price %></h4>
+      </div>
+      <div class="row">
+        <div class="col"> 
+          <%= form_with model:@item_new, local:true do |f| %>
+　          <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.select :amount, *[1..10] %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+</div>
