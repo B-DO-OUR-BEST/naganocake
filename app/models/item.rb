@@ -14,4 +14,10 @@ class Item < ApplicationRecord
       image.variant(resize_to_limit: [50, 50]).processed
   end
 
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :price, presence: true
+
+  validates :is_active, inclusion: {in: [true, false]}
+  validates :genre_name, presence: true
 end
