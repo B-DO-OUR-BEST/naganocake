@@ -4,10 +4,18 @@ class Admin::ItemsController < ApplicationController
     @items = items.page(params[:page]).per(10)
   end
 
+# <%= form_with model: @item do |f| %>で使用します。
   def new
+    @item = Item.new
   end
 
   def create
+    @item = Item.new(item_params)
+    @item.save!
+      redirect_to admin_item_path(@item)
+    # else
+    #   render :new
+    # end
   end
 
   def show
@@ -18,4 +26,11 @@ class Admin::ItemsController < ApplicationController
 
   def update
   end
+
+  private
+  # createで使うストロングパラメータです。
+  def item_params
+    params.require(:item).permit(:genre_id, :name, :introduction, :price)
+  end
+
 end

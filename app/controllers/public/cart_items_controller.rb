@@ -1,6 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = current_cart.cart_items
+    #@cart_items = current_cart.cart_items
     @cart_item = CartItem.all
   end
 
@@ -11,9 +11,6 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-  end
-
-  def create
   end
 
   private
