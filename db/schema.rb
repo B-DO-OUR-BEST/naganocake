@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2024_06_16_110000) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
@@ -74,6 +75,7 @@ ActiveRecord::Schema.define(version: 2024_06_16_110000) do
     t.string "address", null: false
     t.string "telephone_number", null: false
     t.boolean "is_active", default: true, null: false
+
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
