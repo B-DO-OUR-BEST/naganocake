@@ -1,2 +1,21 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<!--商品一覧ページから/商品新規登録後//admin/items/:idでこのページを表示します-->
+<div class="container">
+  
+  <div class="row">
+    <div class="text-bg-light">商品詳細</div>
+  </div>
+  
+  <div class="row mt-3">
+    
+    <div class="col-4 mx-3">
+      <%= item.get_image(params[:id]) %>
+    </div>
+    
+    <div class="col-8 mx-3">
+      <div class="form-horizontal">
+        <div class="form-group row my-3">
+        </div>
+        
+    </div>
+  </div>
+</div>
