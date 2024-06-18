@@ -11,11 +11,11 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
+    @item.save!
       redirect_to admin_item_path(@item)
-    else
-      render :new
-    end
+    # else
+    #   render :new
+    # end
   end
 
   def show
@@ -26,11 +26,11 @@ class Admin::ItemsController < ApplicationController
 
   def update
   end
-  
+
   private
   # createで使うストロングパラメータです。
   def item_params
-    params.require(:item).permit(:name, :introduction, :price)
+    params.require(:item).permit(:genre_id, :name, :introduction, :price)
   end
-  
+
 end
