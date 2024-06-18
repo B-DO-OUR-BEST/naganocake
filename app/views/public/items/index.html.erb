@@ -4,22 +4,21 @@
       <h2><strong>商品一覧</strong></h2>
     </li>   <!--ジャンル検索時は（ジャンル名）一覧の表示にする -->
     <li class="d-flex align-items-end list-unstyled">
-      <h5>(全<%#= @item_count %>件)</h5>
+      <h5>(全<%= @item_count %>件)</h5>
     </li>
   </div>
   <div class="row">
-    <%# @items.each do |item| %>
-      <!--<div class="col-3">
-        <%#= link_to(item) do %>
-          <%#= image_tag item.get_image, size: '50x50' %>
-          <%#= item.name %>
-          <%#= item.price %>
-        <%# end %>
-      </div> -->
-    <%# end %>
+    <% @items.each do |item| %>
+      <div class="col my-3">
+          <div><%= link_to item_path(item) do %></div>
+          <p><%= image_tag item.get_image %></p>
+          <p><%= item.name %></p>
+          <p>￥<%= number_to_currency(item.price, unit: "", precision: 0) %></p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-  
-  
-
-
+  <div class="row mt-4 justify-content-center">
+      <%= paginate @items %>
+    </div>
 </div>

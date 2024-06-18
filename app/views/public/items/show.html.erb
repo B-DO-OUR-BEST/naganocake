@@ -1,13 +1,14 @@
 <div class="container p-5">
-  <div class="col-5">imege</div>
+  <div class="row">
+
+  <div class="col-5"><%= image_tag @item.get_image, width: 360, height: 240 %></div>
     <div class="col-7">
+      <h3><strong><%= @item.name %></strong></h3>
+      <p><%= @item.introduction %></p>
+      <h4 class="my-5">￥<%= number_to_currency(@item.price, unit: "", precision: 0) %></h4>
+
       <div class="row">
-        <h3><%#= @item.name %></h3>
-        <p><%#= @item.introduction %></p>
-        <h4><%#= @item.price %></h4>
-      </div>
-      <div class="row">
-        <div class="col"> 
+        <div class="col">
           <%= form_with model:@item_new, local:true do |f| %>
 　          <%= f.hidden_field :item_id, value: @item.id %>
             <%= f.select :amount, *[1..10] %>
@@ -15,6 +16,7 @@
         </div>
       </div>
 
+    </div>
     </div>
 
 </div>

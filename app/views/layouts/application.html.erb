@@ -13,18 +13,30 @@
   <body>
     <header>
     <div class="container border-bottom">
-      <%= link_to "LOGO", root_path %>
-        <div class=" d-flex justify-content-end">
-          <% if admin_signed_in? %>
-            <%= render 'layouts/admin_header' %>
-          <% elsif customer_signed_in? %>
-            <%= render 'layouts/publicheader' %>
-          <% else %>
-            <%= render 'layouts/publicheader_guest' %>
+      <div class="row">
+        <div class="mx-5">
+          <%= link_to root_path do %>
+            <%= image_tag("icon.jpg", size: "100x100") %>
           <% end %>
         </div>
+        <div class="col my-4 text-center">
+          <p>ようこそ、<%#= @customer.last_name %>さん！</p>
+        </div>
+        <div class="ml-auto my-4 d-flex justify-content-end">
+          <ul class="d-flex list-unstyled mb-0">
+            <% if admin_signed_in? %>
+              <%= render 'layouts/admin_header' %>
+            <% elsif customer_signed_in? %>
+              <%= render 'layouts/publicheader' %>
+            <% else %>
+              <%= render 'layouts/publicheader_guest' %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
       </div>
     </header>
     <%= yield %>
+    
   </body>
 </html>

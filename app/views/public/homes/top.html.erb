@@ -3,22 +3,21 @@
       <!-- <div class="col-3 mr-5">
         ジャンル
       </div> -->
-      <div class="col-7 pr-5">
+      <div class="col pr-5">
         <div class="row">
           <%= image_tag("14.jpg", size: "450x300") %></div>
 
           <h4><strong>新着商品</strong></h4>
           <div class="row">
-          <br>
             <% @items.each do |item| %>
-              <div class="col-3">
-                <%= link_to(item) do %>
-                  <%= image_tag item.get_image, size: '50x50' %>
-                  <%= item.name %>
-                  <%= item.price %>
-                <% end %>
-              </div>
-            <% end %>
+              <div class="col mt-5">
+              <div><%= link_to item_path(item) do %></div>
+                <p><%= image_tag item.get_image %></p>
+                <p><%= item.name %></p>
+                <p>￥<%= number_to_currency(item.price, unit: "", precision: 0) %></p>
+              <% end %>
+            </div>
+          <% end %>
 
       <!--  <div class="col">
           <%= link_to image_tag("1.jpg", size: "120x80"), root_path %>
