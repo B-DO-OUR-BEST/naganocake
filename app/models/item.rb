@@ -1,4 +1,9 @@
 class Item < ApplicationRecord
+  before_save :normalize_post_code
+  
+  def normalize_post_code
+    self.post_code = self.post_code.tr("０-９ －", "0-9 -")
+  end
 
   has_one_attached :image
 
