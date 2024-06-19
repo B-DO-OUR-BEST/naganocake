@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   scope module: :public do
 
   root "homes#top"
@@ -36,6 +37,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:show,:update]
     resources :order_details, only: [:update]
   end
+  
+  
 
   devise_for :customers, controllers: {
       registrations: 'public/registrations',

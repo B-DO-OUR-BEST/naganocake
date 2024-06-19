@@ -10,7 +10,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   end
   
   def create
-    @customer = Customer.new(params[:customers])
+    @customer = Customer.new(customer_params)
     @customer.save
     redirect_to customers_path
   end
