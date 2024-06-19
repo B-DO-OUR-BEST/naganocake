@@ -36,7 +36,7 @@
             <td><%= item.genre.name %></td>
             <td>
               <div class="col-sm-12">
-                <% unless item.is_active %>
+                <% if item.is_active %>
                   <p class="text-success"><strong>販売中</strong></p>
                 <% else %>
                   <p class="text-secondary"><strong>販売停止中</strong></p>
@@ -48,7 +48,7 @@
       </tbody>
     </table>
 
-<%= paginate @items %>
+    <%= paginate @items %>
   </div>
 
 </div>
