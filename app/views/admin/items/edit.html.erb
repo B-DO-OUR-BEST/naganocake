@@ -1,2 +1,25 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<div class='container'>
+
+  <div class='row'>
+    <div class="text-bg-light">
+      商品編集
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-sm-10 center-block">
+      <%= render "itemform" %>
+    </div>
+  </div>
+
+  <!--バリデーションによるエラーメッセージ-->
+  <% if @item.errors.any? %>
+    <%= @item.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+
+</div>
