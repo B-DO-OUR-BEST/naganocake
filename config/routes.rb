@@ -37,6 +37,10 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
   end
   
+  devise_for :users, controllers: {
+    registrations: 'public/registrations',
+      sessions: 'public/sessions',
+  }
   
   devise_for :customers, controllers: {
       registrations: 'public/registrations',
