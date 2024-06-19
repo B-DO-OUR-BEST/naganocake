@@ -4,7 +4,6 @@ class Admin::ItemsController < ApplicationController
     @items = items.page(params[:page]).per(10)
   end
 
-# <%= form_with model: @item do |f| %>で使用します。
   def new
     @item = Item.new
   end
@@ -23,13 +22,20 @@ class Admin::ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item.id)
+    else
+      render :edit
+    end
   end
 
   private
-  # createで使うストロングパラメータです。
+  # createとupdateで使うストロングパラメータです。
   def item_params
     
     params.require(:item).permit(:image, :genre_id, :name, :introduction, :price, :is_active)
