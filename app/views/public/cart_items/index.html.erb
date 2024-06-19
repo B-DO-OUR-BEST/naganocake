@@ -1,42 +1,64 @@
 <div class="container p-5">
   <div class="row my-3">
     <h4 class="col">ショッピングカート</h4>
-    <div class="col d-flex justify-content-end">カートを空にする</div>
+    <div class="col d-flex justify-content-end">
+      <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete,class: "btn btn-danger btn-sm" %>
+    </div>
   </div>
 
 
 <table class="table table-bordered border-dark">
-  <thead class="table-active">
+    <tr class="table-active">
       <th class="col-4">商品名</th>
       <th class="col-2">単価(税込)</th>
       <th class="col-2">数量</th>
       <th class="col-2">小計</th>
       <th class="col-2"></th>
-  </thead>
-  <tbody>
-    <% @cart_item.each do |cart_item| %>
-      <tr>
-        <td><%= image_tag @item.get_image %> <%= @item.name %></td>
-        <td><%= (cart_item.item.price).floor %></td>
-        <td><%= cart_item.subtotal%></td>
-      </tr>
+    </tr>
+      <% total = 0 %>　<!--合計金額totalの初期化-->
+
+    <% if current_customer.cart_items.present? %> <!--カート内に商品があった場合-->
+      <% @cart_items.each do |cart_item| %>
+       <tr>
+         <td class="align-middle">
+           <%= image_tag cart_item.item.get_image, width: 90, height: 60 %>
+           <%= cart_item.item.name %>
+         </td>
+         <td class="align-middle"><%= number_to_currency(cart_item.item.price, unit: "") %></td>
+         <td class="align-middle">
+           <%= form_with model: cart_item, url: cart_item_path(cart_item), local: true, method: :patch do |f| %>
+             <%= f.select :amount, *[1..10] %>
+             <%= f.submit "変更",class: "btn btn-success" %>
+           <% end %>
+         </td>
+         <td class="align-middle">
+           <% subtotal = (cart_item.item.price*cart_item.amount).to_i %>
+           <%= number_to_currency(subtotal, delimiter: ",", format: "%n") %>
+         </td>
+         <td class="align-middle">
+           <%= link_to "削除する", cart_item_path(cart_item.id, cart_item), method: :delete,class: "btn btn-danger" %>
+         </td>
+       </tr>
+       <% total += subtotal %>
+     <% end %>
     <% end %>
-  </tbody>
- </table>
- <div class="row mt-4">
-   <div class="col-8">
-     買い物をつづける
-   </div>
-   <div class="col-4">
-     <table class="table table-bordered">
-      <thead>
-        <th class="table-active">合計金額</th>
-        <th><%#= @合計金額 +=  (cart_item.item.price * 1.1).floor * cart_item.amount %></th>
-      </thead>
+    <div class="row">
+      <div class="col-7"></div>
+      <div class="col-7">
     </table>
+    <div class="row mt-4">
+      <div class="col-8 pl-5">
+        <%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
+      </div>
+      <div class="col-4">
+      <table class="table table-bordered border-dark">
+        <tr>
+          <th  class="table-active">合計金額</th>
+          <td><%= total %></td>
+         </tr>
+      </table>
+      </div>
+    </div>
+      </div>
+    </div>
   </div>
-
- </div>
-
-
-</div>
