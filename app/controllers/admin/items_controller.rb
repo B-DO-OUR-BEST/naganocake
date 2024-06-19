@@ -31,7 +31,9 @@ class Admin::ItemsController < ApplicationController
   private
   # createで使うストロングパラメータです。
   def item_params
+    
     params.require(:item).permit(:image, :genre_id, :name, :introduction, :price, :is_active)
+
   end
 
 end
