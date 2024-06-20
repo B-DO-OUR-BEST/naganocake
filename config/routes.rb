@@ -5,6 +5,11 @@ Rails.application.routes.draw do
 
   root "homes#top"
   get "/about"=>"homes#about"
+  
+  
+  devise_scope :customer do
+    get '/customer/sign_in', to: 'sessions#new'
+  end
 
     resources :items, only: [:index,:show]
     resource :customers, only: [:show,:edit,:update] do
