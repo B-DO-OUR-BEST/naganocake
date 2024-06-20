@@ -7,27 +7,19 @@
         <%= render "devise/shared/error_messages", resource: resource %>
         
         <div class="row">
-          <div class="col">
-            <%= f.label :last_name, "名前(姓)" %>
-            <%= f.text_field :last_name, autofocus: true %>
-          </div>
-          
-          <div class="col">
-            <%= f.label :first_name, "(名) " %>
-            <%= f.text_field :first_name, autofocus: true %>
-          </div>
+          <div class="col">名前</div>
+          <div class="col"><%= f.label :last_name, "(姓)" %></div>
+          <div class="col"><%= f.text_field :last_name, autofocus: true %></div>
+          <div class="col"><%= f.label :first_name, "(名)" %></div>
+          <div class="col"><%= f.text_field :first_name, autofocus: true %></div>
         </div>
-        
-        <div class="row">
-          <div class="col">
-            <%= f.label :last_name_kana, "フリガナ(セイ)" %>
-            <%= f.text_field :last_name_kana, autofocus: true %>
-          </div>
           
-          <div class="col">
-            <%= f.label :first_name_kana, "(メイ)" %>
-            <%= f.text_field :first_name_kana, autofocus: true %>
-          </div>
+        <div class="row">
+          <div class="col">フリガナ</div>
+          <div class="col"><%= f.label :last_name_kana, "(セイ)" %></div>
+          <div class="col"><%= f.text_field :last_name_kana, autofocus: true %></div>
+          <div class="col"><%= f.label :first_name_kana, "(メイ)" %></div>
+          <div class="col"><%= f.text_field :first_name_kana, autofocus: true %></div>
         </div>
         
         <div class="row">
