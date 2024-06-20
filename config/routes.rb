@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root "homes#top"
   get "/about"=>"homes#about"
   
+  get '/customers/my_page', to: 'public/customers#my_page'
   
   devise_scope :customer do
     get '/customer/sign_in', to: 'sessions#new'
