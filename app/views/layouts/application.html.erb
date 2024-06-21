@@ -8,6 +8,8 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/0edaaf4d35.js" crossorigin="anonymous"></script>
+    <!--各自のフォントURLを設定してください -->
   </head>
 
   <body>
@@ -27,8 +29,8 @@
           <% else %>
           <% end %>
 
-          <div class="ml-auto my-4 d-flex justify-content-end">
-            <ul class="d-flex list-unstyled mb-0">
+          <div class="mt-4">
+            <ul class="d-flex list-unstyled justify-content-end">
               <% if admin_signed_in? %>
                 <%= render 'layouts/admin_header' %>
               <% elsif customer_signed_in? %>
@@ -37,9 +39,22 @@
                 <%= render 'layouts/publicheader_guest' %>
               <% end %>
             </ul>
-          </div>
-
+</div>
         </div>
+<!--追加　-->
+          <div class="ml-auto mb-2 d-flex justify-content-end">
+            <%= form_with url: search_path, method: :get, local: true, class: 'form-inline' do %>
+              <div class="input-group">
+                <%= text_field_tag :query, params[:query], placeholder: 'Search', class: 'form-control' %>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+<!--ここまで　-->
       </div>
     </header>
     <%= yield %>
