@@ -9,12 +9,10 @@ class Public::RegistrationsController < Devise::RegistrationsController
     @customer = Customer.new
   end
   
-  
-  
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
-      redirect_to my_page_customers
+      redirect_to my_page_customers_path
     else
       render :new
     end
