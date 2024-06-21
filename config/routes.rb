@@ -24,6 +24,9 @@ Rails.application.routes.draw do
       end
     end
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+
+    resources :genres, only: [:show]
+
   end
 
   namespace :admin do

@@ -1,9 +1,9 @@
 <div class="container mt-5">
 <div class="row">
-    <!-- <div class="col-3 mr-5">
-      ジャンル
-    </div> -->
-  <div class="col pr-5">
+  <div class="col-2">
+    <%= render '/public/items/genre', genres: @genres %>
+  </div>
+  <div class="col-10 pl-5">
     <div class="row ml-1">
       <div class="card text-white">
         <%= image_tag("shop.png", class: "card-img", size: "450x300") %>
