@@ -4,7 +4,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   
   include Devise::Controllers::Helpers
   # before_action :configure_account_update_params, only: [:update]
-
+  
   def new
     @customer = Customer.new
   end

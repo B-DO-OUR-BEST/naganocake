@@ -3,17 +3,18 @@ Rails.application.routes.draw do
   devise_for :users
   scope module: :public do
 
+
   root "homes#top"
   get "/about"=>"homes#about"
   
-  get '/customers/my_page', to: 'public/customers#my_page'
+  get '/customers/my_page', to: 'customers#show'
   
   devise_scope :customer do
     get '/customer/sign_in', to: 'sessions#new'
   end
 
     resources :items, only: [:index,:show]
-    resource :customers, only: [:show,:edit,:update] do
+    resource :customers, only: [:edit,:update] do
       member do
         get :unsubscribe
         get :withdraw
