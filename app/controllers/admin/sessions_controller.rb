@@ -2,7 +2,7 @@
 
 class Admin::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  before_action :configure_permitted_parameters, if: :devise_controller?
+
   # GET /resource/sign_in
   # def new
   #   super
@@ -10,7 +10,7 @@ class Admin::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   # def create
-  # super
+  #   super
   # end
 
   # DELETE /resource/sign_out
