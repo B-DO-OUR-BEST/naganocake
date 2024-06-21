@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+<<<<<<< HEAD
   devise_for :customers, controllers: {
       registrations: 'public/registrations',
       sessions: 'public/sessions',
@@ -10,17 +11,25 @@ Rails.application.routes.draw do
   }
 
   devise_for :users
+
+  get 'search/index'
+
   scope module: :public do
 
 
   root "homes#top"
   get "/about"=>"homes#about"
+
   
   get '/customers/my_page', to: 'customers#show'
   
   devise_scope :customer do
     get '/customer/sign_in', to: 'sessions#new'
   end
+
+  #追加
+  get 'search', to: 'search#index', as: :search
+  #
 
     resources :items, only: [:index,:show]
     resource :customers, only: [:edit,:update] do
