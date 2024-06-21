@@ -9,14 +9,19 @@ class Public::RegistrationsController < Devise::RegistrationsController
     @customer = Customer.new
   end
   
+  
+  
   def create
     @customer = Customer.new(customer_params)
-    @customer.save
-    redirect_to customers_path
+    if @customer.save
+      redirect_to my_page_customers
+    else
+      render :new
+    end
   end
   
-  def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana,
-    :email, :post_code, :address, :telephone_number, :password, :password_confirmation)
-  end
+  #def customer_params
+   # params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana,
+    #:email, :post_code, :address, :telephone_number, :password, :password_confirmation)
+  #end
 end

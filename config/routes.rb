@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  devise_for :customers, controllers: {
+      registrations: 'public/registrations',
+      sessions: 'public/sessions',
+  }
+ 
+  devise_for :admin, controllers: {
+      sessions: 'admin/sessions',
+  }
+
   devise_for :users
   scope module: :public do
 
@@ -18,6 +27,9 @@ Rails.application.routes.draw do
       member do
         get :unsubscribe
         get :withdraw
+      end
+      collection do
+        get :my_page
       end
     end
     resources :cart_items, only: [:index,:update,:create,:destroy] do
@@ -49,14 +61,5 @@ Rails.application.routes.draw do
   end
   
   
-
-  devise_for :customers, controllers: {
-      registrations: 'public/registrations',
-      sessions: 'public/sessions',
-  }
- 
-  devise_for :admin, controllers: {
-      sessions: 'admin/sessions',
-  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
