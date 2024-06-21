@@ -7,18 +7,20 @@ class Public::AddressesController < ApplicationController
   def create  #フォーム入力後
     @address = current_customer.addresses.new(address_params)
     if @address.save
-      redirect_to addresses_path
+      redirect_to addresses_path(address: @address)
     else
+      @addresses = current_customer.addresses.all
+      p @address.errors.full_messages # エラーメッセージを表示
       render :index
     end
   end
-  
+
   def destroy
     @address = current_customer.addresses.find(params[:id])
     @address.destroy
     redirect_to addresses_path
   end
-  
+
   def edit
     @address = current_customer.addresses.find(params[:id])
   end
@@ -29,6 +31,7 @@ class Public::AddressesController < ApplicationController
       redirect_to addresses_path
     else
       render :edit
+    end
   end
 
   private
