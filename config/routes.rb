@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'search/index'
   scope module: :public do
 
   root "homes#top"
   get "/about"=>"homes#about"
-
+  #追加
+  get 'search', to: 'search#index', as: :search
+  #
     resources :items, only: [:index,:show]
     resource :customers, only: [:show,:edit,:update] do
       member do
