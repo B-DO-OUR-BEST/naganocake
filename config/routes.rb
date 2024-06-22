@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   #追加
   get 'search', to: 'search#index', as: :search
   #
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
+  
     resources :items, only: [:index,:show]
     resource :customers, only: [:show,:edit,:update] do
       member do
