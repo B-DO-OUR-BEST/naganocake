@@ -31,6 +31,11 @@ Rails.application.routes.draw do
   get 'search', to: 'search#index', as: :search
   #
 
+  #get "login", to: "sessions#new"
+  #post "login", to: "sessions#create"
+  #delete "logout", to: "sessions#destroy"
+  
+
     resources :items, only: [:index,:show]
     resource :customers, only: [:edit,:update] do
       member do
