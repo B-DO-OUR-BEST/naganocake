@@ -1,13 +1,25 @@
 <div class="container">
   <div class="row">
     <div class="col-5">
-
+      <table class="table table-bordered">
+        <tbody>
+            <% @order.each do |order| %>
+            <tr>
+              <td>注文日</td>
+              <td><%= l order.created_at, format: :default %></td>
+            </tr>
+            <tr>
+              <td>配送先</td>
+              <td><%= order.address_display %></td>
+            </tr>
+        </tbody>
+      </table>
     </div>
     <div class="col-3">
 
     </div>
   </div>
-  
+    
   <div class="row">
     <table>
       <thead>

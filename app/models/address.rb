@@ -13,4 +13,8 @@ class Address < ApplicationRecord
       self.post_code = self.post_code.tr("０-９ａ-ｚＡ-Ｚ（）－−", "0-9a-zA-Z  ()-")
   end
 
+  def address_display
+    '〒' + postal_code + ' ' + address + ' ' + name
+  end
+
 end
