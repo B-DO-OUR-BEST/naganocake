@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   
   get '/customers/my_page', to: 'customers#show'
+  post '/customers/my_page', to: 'customers#show'
   
   devise_scope :customer do
     get '/customer/sign_in', to: 'sessions#new'
