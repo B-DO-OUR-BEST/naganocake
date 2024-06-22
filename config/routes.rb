@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       registrations: 'public/registrations',
       sessions: 'public/sessions',
   }
- 
+
   devise_for :admin, controllers: {
       sessions: 'admin/sessions',
   }
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   root "homes#top"
   get "/about"=>"homes#about"
-  
+
   get '/customers/my_page', to: 'customers#show'
 
   #追加
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   # get "login", to: "sessions#new"
   # post "login", to: "sessions#create"
   # delete "logout", to: "sessions#destroy"
-  
+
     resources :items, only: [:index,:show]
     resource :customers, only: [:edit,:update] do
       member do
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
       end
     end
     resources :orders, only: [:new,:create,:index,:show] do
-      member do
+      collection do
         get :confirm
         get :thanks
       end
@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show,:update,:index]
     resources :order_details, only: [:update]
   end
-  
-  
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
