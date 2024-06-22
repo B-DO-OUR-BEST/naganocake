@@ -1,18 +1,38 @@
 Rails.application.routes.draw do
 
+  devise_for :customers, controllers: {
+      registrations: 'public/registrations',
+      sessions: 'public/sessions',
+  }
+ 
+  devise_for :admin, controllers: {
+      sessions: 'admin/sessions',
+  }
+
   get 'search/index'
+
   scope module: :public do
 
   root "homes#top"
   get "/about"=>"homes#about"
+  
+  get '/customers/my_page', to: 'customers#show'
+
   #追加
   get 'search', to: 'search#index', as: :search
-  #
+
+  # get "login", to: "sessions#new"
+  # post "login", to: "sessions#create"
+  # delete "logout", to: "sessions#destroy"
+  
     resources :items, only: [:index,:show]
-    resource :customers, only: [:show,:edit,:update] do
+    resource :customers, only: [:edit,:update] do
       member do
         get :unsubscribe
         get :withdraw
+      end
+      collection do
+        get :my_page
       end
     end
     resources :cart_items, only: [:index,:update,:create,:destroy] do
@@ -42,14 +62,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show,:update,:index]
     resources :order_details, only: [:update]
   end
-
-  devise_for :customers, controllers: {
-      registrations: 'public/registrations',
-      sessions: 'public/sessions',
-  }
-
-  devise_for :admin, controllers: {
-      sessions: 'admin/sessions',
-  }
+  
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
