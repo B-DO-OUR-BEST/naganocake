@@ -9,33 +9,22 @@ Rails.application.routes.draw do
       sessions: 'admin/sessions',
   }
 
-  devise_for :users
-
   get 'search/index'
 
   scope module: :public do
 
-
   root "homes#top"
   get "/about"=>"homes#about"
-
   
   get '/customers/my_page', to: 'customers#show'
-  post '/customers/my_page', to: 'customers#show'
-  
-  devise_scope :customer do
-    get '/customer/sign_in', to: 'sessions#new'
-  end
 
   #追加
   get 'search', to: 'search#index', as: :search
-  #
 
-  #get "login", to: "sessions#new"
-  #post "login", to: "sessions#create"
-  #delete "logout", to: "sessions#destroy"
+  # get "login", to: "sessions#new"
+  # post "login", to: "sessions#create"
+  # delete "logout", to: "sessions#destroy"
   
-
     resources :items, only: [:index,:show]
     resource :customers, only: [:edit,:update] do
       member do
