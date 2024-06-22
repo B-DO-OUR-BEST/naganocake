@@ -1,9 +1,9 @@
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   
-  def new
+  #def new
     #@customer = Customer.new
-  end
+  #end
   
   #def create
     #user = Customer.find_by(email: params[:session][:email].downcase)
@@ -19,21 +19,21 @@ class Public::SessionsController < Devise::SessionsController
     #params.require(:session).permit(:email)
   #end
   
-  def create
-    user = Customer.find_by(email: params[:session][:email].downcase)
+  #def create
+    #customer = Customer.find_by(email: params[:email].downcase)
     # bcrypt の authenticateメソッドでパスワードの照合を行なう
-    if user && user.authenticate(params[:session][:password])
-      log_in(user)
-      redirect_to user
-    else
-      flash.now[:error] = "ログインに失敗しました"
-      render "new", status: :unprocessable_entity
-    end
-  end
+    #if customer && customer.authenticate(params[:password])
+      #log_in(user)
+      #redirect_to root_path
+    #else
+      #flash.now[:error] = "ログインに失敗しました"
+      #render "new", status: :unprocessable_entity
+    #end
+  #end
 
-  def destroy
-    log_out
-    redirect_to root_path, status: :see_other
-  end
+  #def destroy
+    #log_out
+    #redirect_to root_path, status: :see_other
+  #end
   
 end
