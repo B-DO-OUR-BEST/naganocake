@@ -1,2 +1,12 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<p id="notice"></p>
+<div class="container">
+  <h4>マイページ</h4>
+  <p id="notice"></p>
+    <div class="actions text-center">
+      <%= form_with model: @customer, url: customers_information_edit_path, method: :patch do |f| %>
+      <div class="row">
+        <div class="col-1">登録情報</div>
+        <div class="col-1"><%= f.submit "編集する", class: "btn btn-lg btn-success"%></div>
+      </div>
+      <% end %>
+    </div>

@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   get "/about"=>"homes#about"
 
   get '/customers/my_page', to: 'customers#show'
-
+  
+  #追加
+  get '/customers/information/edit', to: 'customers#edit'
+  patch '/customers/information/edit', to: 'customers#update'
+  
   #追加
   get 'search', to: 'search#index', as: :search
 
@@ -26,7 +30,7 @@ Rails.application.routes.draw do
   # delete "logout", to: "sessions#destroy"
 
     resources :items, only: [:index,:show]
-    resource :customers, only: [:edit,:update] do
+    resource :customers, only: [:show,:edit,:update] do
       member do
         get :unsubscribe
         get :withdraw
