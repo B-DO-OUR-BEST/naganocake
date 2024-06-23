@@ -13,10 +13,10 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     elsif params[:order][:select_address] == "1"
-      shipping = Address.find(params[:order][:customer_id]) # orderのcustomer_idカラムでアドレス帳id=xを取得
-      @order.post_code = shipping.poset_code
-      @order.address = shipping.address
-      @order.name = shipping.name
+      @address = Address.find(params[:order][:customer_id]) # orderのcustomer_idカラムでアドレス帳id=xを取得
+      @order.post_code = @address.poset_code
+      @order.address = @address.address
+      @order.name = @address.name
     elsif params[:order][:select_address] == "2"
       @order.post_code = params[:order][:post_code]
       @order.address = params[:order][:address]
@@ -24,6 +24,10 @@ class Public::OrdersController < ApplicationController
     else
       render "new"
     end
+    
+    @cart_items = current_customer.cart_items.all
+    
+    @shipping_fee = 800 #送料については固定としました。
   end
 
   def thanks
