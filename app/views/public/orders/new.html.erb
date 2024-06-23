@@ -9,7 +9,7 @@
         <strong>支払方法</strong>
           <div>
             <%#= f.radio_button :payment_method, "credit_card" %>
-            <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+            <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>
             <%#= f.label :payment_method_credit_card, "クレジットカード" %>
             <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
           </div>
