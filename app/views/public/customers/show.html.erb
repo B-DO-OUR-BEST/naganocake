@@ -14,52 +14,36 @@
         <div class="row">
           <div class="col-5">
             <table class="table table-bordered">
-              <thead class="table-active">
+              <tbody>
                 <tr>
                   <th>氏名</th>
+                  <td><%= @customer.last_name %><%= @customer.first_name %></td>
                 </tr>
                 <tr>
                   <th>カナ</th>
+                  <td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
                 </tr>
                 <tr>
                   <th>郵便番号</th>
+                  <td><%= @customer.post_code %></td>
                 </tr>
                 <tr>
                   <th>住所</th>
+                  <td><%= @customer.address %></td>
                 </tr>
                 <tr>
                   <th>電話番号</th>
+                  <td><%= @customer.telephone_number %></td>
                 </tr>
                 <tr>
                   <th>メールアドレス</th>
+                  <td><%= @customer.email %></td>
                 </tr>
-                  
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                  <%# @order.each do |order| %>
-                  <tr>
-                    <td><%#= l order.created_at, format: :default %></td>
-                  </tr>
-                  <tr>
-                    <td><%#= order.address_display %></td>
-                  </tr>
-                  <tr>
-                    <td><%#= order.payment_method %></td>
-                  </tr>
-                  <tr>
-                    <td><%#= order.status %></td>
-                  </tr>
-                  <tr>
-                    <td><%#= order.status %></td>
-                  </tr>
-                  <tr>
-                    <td><%#= order.status %></td>
-                  </tr>
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
       
       <p id="notice"></p>
       <div class="row">
@@ -73,4 +57,5 @@
         <div class="col-2"><%= link_to "一覧を見る", orders_path, class: "btn btn-lg btn-primary" %></div>
       </div>
       
+    </div>
     </div>
