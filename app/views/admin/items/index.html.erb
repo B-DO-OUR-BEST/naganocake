@@ -1,5 +1,5 @@
 <div class="container">
-  
+
   <div class="row mt-3">
     <div class="offset-2 col-8">商品一覧</div>
     <div>
@@ -11,9 +11,9 @@
 
   <div class="row justify-content-center">
 
-    <table class='col-10 table table-hover table-inverse'>
+    <table class='col-10 table table-hover table-borderless border-bottom'>
       <thead>
-        <tr>
+        <tr class="table-active">
           <th>商品ID</th>
           <th>商品名</th>
           <th>税抜価格</th>
@@ -21,7 +21,7 @@
           <th>ステータス</th>
         </tr>
       </thead>
-      
+
       <tbody>
         <% @items.each do |item| %>
           <tr>
@@ -29,10 +29,12 @@
             <td>
               <!--商品詳細ページのルーティングは→ admin_item GET /admin/items/:id(.:format)      admin/items#show-->
               <%= link_to admin_item_path(item.id) do %>
-                <%= item.name %>
+                <p style="color: black; text-decoration: underline;">
+                  <%= item.name %>
+                </p>
               <% end %>
             </td>
-            <td><%= item.price %></td>
+            <td><%= number_to_currency(item.price, unit: "", precision: 0) %></td>
             <td><%= item.genre.name %></td>
             <td>
               <div class="col-sm-12">
@@ -47,8 +49,9 @@
         <% end %>
       </tbody>
     </table>
-
-    <%= paginate @items %>
-  </div>
+    </div>
+    <div class="row justify-content-center">
+      <%= paginate @items %>
+    </div>
 
 </div>
