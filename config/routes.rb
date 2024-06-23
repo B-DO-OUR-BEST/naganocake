@@ -17,10 +17,10 @@ Rails.application.routes.draw do
   get "/about"=>"homes#about"
 
   get '/customers/my_page', to: 'customers#show'
-  
+  patch '/customers/my_page', to: 'customers#show'
   #追加
   get '/customers/information/edit', to: 'customers#edit'
-  patch '/customers/information/edit', to: 'customers#update'
+  patch '/customers/information/edit', to: 'customers#edit'
   
   get 'search', to: 'search#index', as: :search
 
