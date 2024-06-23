@@ -1,10 +1,29 @@
 class Public::OrdersController < ApplicationController
-  # before_action :authenticate_customer!
+  before_action :authenticate_customer!
   
   def new
+    @order = Order.new
   end
 
   def confirm
+    @order = Order.new(order_params)
+    
+    if params[:order][:select_address] == "0"
+      @order.post_code = current_customer.post_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
+    elsif params[:order][:select_address] == "1"
+      shipping = Address.find(params[:order][:customer_id]) # orderのcustomer_idカラムでアドレス帳id=xを取得
+      @order.post_code = shipping.poset_code
+      @order.address = shipping.address
+      @order.name = shipping.name
+    elsif params[:order][:select_address] == "2"
+      @order.post_code = params[:order][:post_code]
+      @order.address = params[:order][:address]
+      @order.name = params[:order][:name]
+    else
+      render "new"
+    end
   end
 
   def thanks
@@ -21,4 +40,9 @@ class Public::OrdersController < ApplicationController
   def show
     @order = current_customer.orders.find(params[:id])
   end
+
+  private
+    def order_params
+      params.require(:order).permit(:customer_id, :post_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+    end
 end
