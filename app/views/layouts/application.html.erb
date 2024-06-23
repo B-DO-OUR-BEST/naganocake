@@ -21,13 +21,14 @@
               <%= image_tag("icon.jpg", size: "100x100") %>
             <% end %>
           </div>
-
+          <div class="col">
           <% if customer_signed_in? %>
             <div class="col mt-4 pt-3 text-center">
               <p>ようこそ、<%#= @customer.last_name %>さん！</p>
             </div>
           <% else %>
           <% end %>
+          </div>
 
           <div class="mt-4">
             <ul class="d-flex list-unstyled justify-content-end">
@@ -57,7 +58,17 @@
 <!--ここまで　-->
       </div>
     </header>
+
     <%= yield %>
+
+    <footer class="fixed-bottom">
+
+      <div class="container my-3 border-top text-center ">
+        <div class="py-5">
+        <h3 style="font-family: Monotype Corsiva; color: gray;">Nagano  Cake</h3>
+        </div>
+      </div>
+    </footer>
 
   </body>
 </html>
