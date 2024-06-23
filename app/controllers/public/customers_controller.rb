@@ -16,10 +16,4 @@ class Public::CustomersController < ApplicationController
   def withdraw
   end
   
-  # private
-  
-  # def customer_params
-  #   params.require(:book).permit(:title, :body)
-  # end
-  
 end
