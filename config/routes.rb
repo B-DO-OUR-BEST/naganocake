@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   get '/customers/information/edit', to: 'customers#edit'
   patch '/customers/information/edit', to: 'customers#update'
   
-  #追加
   get 'search', to: 'search#index', as: :search
 
   # get "login", to: "sessions#new"

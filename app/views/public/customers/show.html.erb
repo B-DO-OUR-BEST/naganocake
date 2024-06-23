@@ -10,7 +10,56 @@
       </div>
       <% end %>
       
-      
+      <div class="container">
+        <div class="row">
+          <div class="col-5">
+            <table class="table table-bordered">
+              <thead class="table-active">
+                <tr>
+                  <th>氏名</th>
+                </tr>
+                <tr>
+                  <th>カナ</th>
+                </tr>
+                <tr>
+                  <th>郵便番号</th>
+                </tr>
+                <tr>
+                  <th>住所</th>
+                </tr>
+                <tr>
+                  <th>電話番号</th>
+                </tr>
+                <tr>
+                  <th>メールアドレス</th>
+                </tr>
+                  
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                  <%# @order.each do |order| %>
+                  <tr>
+                    <td><%#= l order.created_at, format: :default %></td>
+                  </tr>
+                  <tr>
+                    <td><%#= order.address_display %></td>
+                  </tr>
+                  <tr>
+                    <td><%#= order.payment_method %></td>
+                  </tr>
+                  <tr>
+                    <td><%#= order.status %></td>
+                  </tr>
+                  <tr>
+                    <td><%#= order.status %></td>
+                  </tr>
+                  <tr>
+                    <td><%#= order.status %></td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
       
       <p id="notice"></p>
       <div class="row">
