@@ -32,7 +32,8 @@ class Public::AddressesController < ApplicationController
     else
       render :edit
     end
-  address_display
+  end
+  # address_display
 
   private
   def address_params
