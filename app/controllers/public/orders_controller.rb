@@ -31,8 +31,23 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    # Orderモデルに注文を保存
     @order = Order.new(order_params)
     @order.save
+    # Order_detailモデルに注文を保存
+    @cart_items = current_customer.cart_items.all
+    @cart_items.each do |cart_item|
+      @order_details = OrderDetail.new      #毎商品で作りたい。
+      @order_details.order_id = @order.id
+      @order_details.item_id = cart_item.item.id
+      @order_details.price = cart_item.item.with_tax_price
+      @order_details.amount = cart_item.amount
+      @order_details.making_status = 0
+      @order_details.save!
+    end
+    
+    CartItem.destroy_all
+    redirect_to thanks_orders_path
   end
   
   def thanks
