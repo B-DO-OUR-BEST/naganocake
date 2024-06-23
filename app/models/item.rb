@@ -1,4 +1,19 @@
 class Item < ApplicationRecord
+
+  #商品説明欄で、半角で入力された数字や記号を半角に変換する処理
+  before_save :normalize_introduction
+
+  def normalize_introduction
+    self.introduction = self.introduction.tr("０-９ －", "0-9 -")
+  end
+
+  #before_save :normalize_post_code
+
+  #def normalize_post_code
+    #self.post_code = self.post_code.tr("０-９ －", "0-9 -")
+  #end
+  #商品編集後保存が出来なかった為、修正しました。
+  
   has_one_attached :image
 
   belongs_to :genre
