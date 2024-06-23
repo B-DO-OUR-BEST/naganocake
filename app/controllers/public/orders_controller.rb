@@ -27,13 +27,15 @@ class Public::OrdersController < ApplicationController
     
     @cart_items = current_customer.cart_items.all
     
-    @shipping_fee = 800 #送料については固定としました。
-  end
 
-  def thanks
   end
 
   def create
+    @order = Order.new(order_params)
+    @order.save
+  end
+  
+  def thanks
   end
 
 # .latestmethodはApplicationモデルに記載。created_at の値を降順で並び替える機能。

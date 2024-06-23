@@ -24,7 +24,8 @@
               </td>
               <td><%= cart_item.item.with_tax_price %></td>
               <td><%= cart_item.amount %></td>
-              <td><%= subtotal = (cart_item.item.with_tax_price*cart_item.amount) %></td>
+              <td><%= cart_item.subtotal %></td>
+              <% total += cart_item.subtotal %>
             </tr>
           <% end %>
         </tbody>
@@ -35,28 +36,29 @@
       <table class='table table-hover table-inverse'>
         <tr>
           <th>送料</th>
-          <td><%= shipping_fee %></td>
+          <% @order.shipping_cost = 800 %>
+          <td><%= @order.shipping_cost %></td>
         </tr>
         <tr>
           <th>商品合計</th>
-          <td><%=  %></td>
+          <td><%= total.to_i %></td>
         </tr>
         <tr>
           <th>請求金額</th>
-          <td></td>
+          <td><%= @order.shipping_cost + total.to_i %></td>
         </tr>
       </table>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-2"><strong>支払方法</strong></div>
-    <div class="col-8"><%= @order.payment_method %></div>
+    <div class="col-4"><%= @order.payment_method %></div>
   </div>
   
   <div class="row">
     <div class="col-2"><strong>お届け先</strong></div>
-    <div class="col-8">
+    <div class="col-4">
       〒<%= @order.post_code %><%= @order.address %><br/>
       <%= @order.name %>
     </div>
@@ -64,7 +66,17 @@
   
   <div class="row">
     <div class="col offset-4">
-      <%= f.submit "注文を確定する", class: "btn btn-info" %>
+      <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+        <%= f.hidden_field :customer_id %>
+        <%= f.hidden_field :post_code %>
+        <%= f.hidden_field :address %>
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :shipping_cost %>
+        <%= f.hidden_field :total_payment %>
+        <%= f.hidden_field :payment_method %>
+        <%= f.hidden_field :status %>
+        <%= f.submit "注文を確定する", class: "btn btn-success" %>
+      <% end %>
     </div>
   </div>
 </div>
