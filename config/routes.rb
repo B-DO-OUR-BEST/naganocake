@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   
   #追加
   get '/customers/information/edit', to: 'customers#edit'
-  patch '/customers/information/edit', to: 'customers#update'
+  patch '/customers/information/edit', to: 'customers#edit'
   
   get 'search', to: 'search#index', as: :search
 
