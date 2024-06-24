@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  
+
   def show
     @customer = current_customer
   end
@@ -22,11 +22,11 @@ class Public::CustomersController < ApplicationController
 
   def withdraw
   end
-  
+
   private
 
   def customer_params
     params.require(:customer).permit(:name, :email, :password, :password_confirmation)
   end
-  
+
 end
