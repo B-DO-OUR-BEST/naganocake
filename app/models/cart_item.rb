@@ -4,7 +4,8 @@ class CartItem < ApplicationRecord
 
 
   def subtotal
-    (cart_item.item.price).floor * amount
+    # (cart_item.item.price).floor * amount
+    item.with_tax_price * amount  #order/confirmで使用。
   end
 
   def taxtotal
