@@ -17,14 +17,22 @@
       <div class="container border-bottom">
         <div class="row">
           <div class="mx-5">
-            <%= link_to root_path do %>
-              <%= image_tag("icon.jpg", size: "100x100") %>
+            <% if admin_signed_in? %>
+              <%= image_tag("icon.jpg", size: "100x100", class: "icon-image") %>
+            <% elsif customer_signed_in? %>
+              <%= link_to root_path do %>
+                <%= image_tag("icon.jpg", size: "100x100", class: "icon-image") %>
+              <% end %>
+            <% else %>
+              <%= link_to root_path do %>
+                <%= image_tag("icon.jpg", size: "100x100", class: "icon-image") %>
+              <% end %>
             <% end %>
           </div>
           <div class="col">
           <% if customer_signed_in? %>
             <div class="col mt-4 pt-3 text-center">
-              <p>ようこそ、<%#= @customer.last_name %>さん！</p>
+              <p>ようこそ、<%= current_customer.last_name %>さん！</p>
             </div>
           <% else %>
           <% end %>
@@ -59,16 +67,17 @@
       </div>
     </header>
 
+    <main>
     <%= yield %>
+      
+      
+    <div style="height: 190px;"></div>
+    </main>
 
-    <!--<footer class="fixed-bottom">-->
+    <footer class="fixed-bottom", style="background-color: white;">
 
-    <!--  <div class="container my-3 border-top text-center ">-->
-    <!--    <div class="py-5">-->
-    <!--    <h3 style="font-family: Monotype Corsiva; color: gray;">Nagano  Cake</h3>-->
-    <!--    </div>-->
-    <!--  </div>-->
-    <!--</footer>-->
+
+   
 
   </body>
 </html>

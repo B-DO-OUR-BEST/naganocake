@@ -7,7 +7,7 @@
       <div class="row">
         <li class="mr-2 list-unstyled">
           <h2><strong>商品一覧</strong></h2>
-        </li> 
+        </li>
         <li class="d-flex align-items-end list-unstyled">
           <h5>(全<%= @item_count %>件)</h5>
         </li>
@@ -19,7 +19,7 @@
               <p><%= image_tag item.get_image %></p>
               <b><%= item.name %></b>
               <br>
-              <p>￥<%= number_to_currency(item.price, unit: "", precision: 0) %></p>
+              <p>￥<%= number_to_currency(item.with_tax_price, unit: "", precision: 0) %></p>
             <% end %>
           </div>
         <% end %>

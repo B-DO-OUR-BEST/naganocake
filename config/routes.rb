@@ -29,10 +29,13 @@ Rails.application.routes.draw do
   # delete "logout", to: "sessions#destroy"
 
     resources :items, only: [:index,:show]
-    resource :customers, only: [:show,:edit,:update] do
+
+    resource :customers do
       member do
         get :unsubscribe
         get :withdraw
+        get 'information/edit', to: 'customers#edit'
+        patch :information, to: 'customers#update'
       end
       collection do
         get :my_page
@@ -45,7 +48,7 @@ Rails.application.routes.draw do
     end
     resources :orders, only: [:new,:create,:index,:show] do
       collection do
-        get :confirm
+        post :confirm
         get :thanks
       end
     end
