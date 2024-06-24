@@ -17,11 +17,8 @@ Rails.application.routes.draw do
   get "/about"=>"homes#about"
 
   get '/customers/my_page', to: 'customers#show'
-  patch '/customers/my_page', to: 'customers#show'
+
   #追加
-  get '/customers/information/edit', to: 'customers#edit'
-  patch '/customers/information/edit', to: 'customers#edit'
-  
   get 'search', to: 'search#index', as: :search
 
   # get "login", to: "sessions#new"
@@ -29,13 +26,10 @@ Rails.application.routes.draw do
   # delete "logout", to: "sessions#destroy"
 
     resources :items, only: [:index,:show]
-
-    resource :customers do
+    resource :customers, only: [:edit,:update] do
       member do
         get :unsubscribe
         get :withdraw
-        get 'information/edit', to: 'customers#edit'
-        patch :information, to: 'customers#update'
       end
       collection do
         get :my_page
@@ -48,7 +42,7 @@ Rails.application.routes.draw do
     end
     resources :orders, only: [:new,:create,:index,:show] do
       collection do
-        post :confirm
+        get :confirm
         get :thanks
       end
     end
