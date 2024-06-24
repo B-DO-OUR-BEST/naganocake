@@ -37,7 +37,7 @@ Rails.application.routes.draw do
         get :unsubscribe
         get :withdraw
         get 'information/edit', to: 'customers#edit'
-        
+        patch :information, to: 'customers#update'
 
 
       end
