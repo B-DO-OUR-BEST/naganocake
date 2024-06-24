@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     end
     resources :orders, only: [:new,:create,:index,:show] do
       collection do
-        get :confirm
+        post :confirm
         get :thanks
       end
     end
