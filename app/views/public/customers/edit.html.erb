@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-6 offset-md-3" style="font-size: 24px;">会員情報編集</div>
   </div>
-  <%= form_with model: @customer, url: my_page_customers_path, local: true, method: :patch do |f| %>
+  <%= form_with model: @customer, url: my_page_public_customers_path, local: true, method: :patch do |f| %>
     <div class="row">
       <div class="col-3">名前</div>
       <div class="col-3"><%= f.text_field :last_name %></div>
