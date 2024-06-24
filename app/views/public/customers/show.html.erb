@@ -5,7 +5,7 @@
   </div>
   <p id="notice"></p>
     <div class="actions text-center">
-      <%= form_with model: @customer, url: edit_customers_path(@customer), method: :patch do |f| %>
+      <%= form_with model: @customer, url: customers_information_edit_path, method: :patch do |f| %>
       <div class="row">
         <div class="col-1">登録情報</div>
         <div class="col-2"><%= f.submit "編集する", class: "btn btn-lg btn-success", style: "font-size: 1rem;"%></div>
