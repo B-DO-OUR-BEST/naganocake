@@ -9,6 +9,6 @@ class OrderDetail < ApplicationRecord
   validates :making_status, presence: true
   
   def subtotal
-    item.with_tax_price * amount  #order/showで
+    item.with_tax_price * amount  #order/showで使用。
   end
 end
