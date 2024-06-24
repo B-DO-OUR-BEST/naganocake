@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mt-3">
-    <%= @customer.last_name %><#= @customer.first_name %>さんの会員詳細
+    <%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細
   </div>
 
   <div class="row justify-content-center form-group mt-3 ">
@@ -17,7 +17,7 @@
   </div>
   <div class="row justify-content-center form-group mt-3 ">
     <div class="col-3">郵便番号</div>
-    <div class="col-6"><%= @cutomer.post_code.gsub("-","") %></div>
+    <div class="col-6"><%= @customer.post_code.gsub("-","") %></div>
   </div>
   <div class="row justify-content-center form-group mt-3 ">
     <div class="col-3">住所</div>
@@ -46,7 +46,7 @@
       <%= link_to "編集する", edit_admin_customer_path(params[:id]), class: "btn btn-success" %>
     </div>
     <div class="col offset-2">
-      <%= link_to "注文履歴一覧を見る", admin_root_path, class: "btn btn-info" %>
+      <%= link_to "注文履歴一覧を見る", admin_path, class: "btn btn-info" %>
     </div>
   </div>
 </div>
