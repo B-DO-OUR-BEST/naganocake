@@ -5,10 +5,10 @@ ja:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
       status:
-        deposit_Pending: "入金待ち"
-        payment_Confirmed: "入金確認"
+        deposit_pending: "入金待ち"
+        payment_confirmed: "入金確認"
         in_making: "製作中"
-        preparing_Shipment: "発送準備中"
+        preparing_shipment: "発送準備中"
         shipped: "発送済み"
   activerecord:
     errors:
