@@ -1,35 +1,36 @@
 class Public::CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update, :unsubscribe, :withdraw]
+  skip_before_action :verify_authenticity_token, only: [:withdraw]
 
   def show
+    @customer = current_customer
   end
 
   def edit
+    @customer = current_customer
   end
 
   def update
+    @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to @customer, notice: '更新が完了しました。'
+      redirect_to customer_path, notice: '更新が完了しました。'
     else
       render :edit
     end
   end
 
   def unsubscribe
+    @customer = current_customer
   end
 
   def withdraw
+    @customer = Customer.find(current_customer.id)
     @customer.update(is_active: false)
     reset_session
-    flash[:notice] = "ご利用ありがとうございました。またのご利用をお待ちしております。"
+    flash[:notice] = "Thank you for the good rating. We hope to see you again."
     redirect_to root_path
   end
 
   private
-
-  def set_customer
-    @customer = current_customer
-  end
 
   def customer_params
     params.require(:customer).permit(:name, :email, :password, :password_confirmation)
