@@ -1,65 +1,78 @@
 Rails.application.routes.draw do
+  # devise_for を使ってデバイスを設定
   devise_for :customers, controllers: {
-      registrations: 'public/registrations',
-      sessions: 'public/sessions',
+    registrations: 'public/registrations',
+    sessions: 'public/sessions',
   }
 
   devise_for :admin, controllers: {
-      sessions: 'admin/sessions',
+    sessions: 'admin/sessions',
   }
 
+  # 検索のためのルーティング
   get 'search/index'
 
-scope module: :public do
-  root "homes#top"
-  get "/about" => "homes#about"
+  # public スコープ内のルーティング定義
+  scope module: :public do
+    root "homes#top"
+    get "/about" => "homes#about"
 
-  get '/customers/my_page', to: 'customers#show'
-  patch '/customers/my_page', to: 'customers#show'
+    # 顧客のマイページ
+    get '/customers/my_page', to: 'customers#show'
+    patch '/customers/my_page', to: 'customers#show'
 
-  get '/customers/information/edit', to: 'customers#edit'
-  patch '/customers/information/edit', to: 'customers#edit'
+    # 顧客情報の編集
+    get '/customers/information/edit', to: 'customers#edit'
+    patch '/customers/information/edit', to: 'customers#edit'
   
-  get 'search', to: 'search#index', as: :search
+    # 検索
+    get 'search', to: 'search#index', as: :search
 
-  resources :items, only: [:index, :show]
+    # 商品のルーティング
+    resources :items, only: [:index, :show]
 
-  resources :customers do
-    member do
-      get "unsubscribe"
-      patch "withdraw"
-      get 'information/edit', to: 'customers#edit'
-      patch :information, to: 'customers#update'
+    # 顧客に関するルーティング
+    resource :customers do
+      get 'unsubscribe' # 退会ページへのルーティング
+      patch 'withdraw' # 退会処理のルーティング
+      get 'information/edit', to: 'customers#edit' # 顧客情報の編集ページへのルーティング
+      patch :information, to: 'customers#update' # 顧客情報の更新処理のルーティング
+
+      # マイページへのルーティング
+      collection do
+        get :my_page
+      end
     end
-    collection do
-      get :my_page
+
+    # カートに関するルーティング
+    resources :cart_items, only: [:index, :update, :create, :destroy] do
+      collection do
+        delete :destroy_all
+      end
     end
+
+    # 注文に関するルーティング
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post :confirm
+        get :thanks
+      end
+    end
+
+    # 住所に関するルーティング
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+
+    # ジャンルに関するルーティング
+    resources :genres, only: [:show]
   end
 
-  resources :cart_items, only: [:index, :update, :create, :destroy] do
-    collection do
-      delete :destroy_all
-    end
+  # admin スコープ内のルーティング
+  namespace :admin do
+    get '/' => 'homes#top'
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show, :update, :index]
+    resources :order_details, only: [:update]
   end
-
-  resources :orders, only: [:new, :create, :index, :show] do
-    collection do
-      post :confirm
-      get :thanks
-    end
-  end
-
-  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-  resources :genres, only: [:show]
 end
-
-namespace :admin do
-  get '/' => 'homes#top'
-  resources :items, only: [:index, :new, :create, :show, :edit, :update]
-  resources :genres, only: [:index, :create, :edit, :update]
-  resources :customers, only: [:index, :show, :edit, :update]
-  resources :orders, only: [:show, :update, :index]
-  resources :order_details, only: [:update]
-end
-end 
-

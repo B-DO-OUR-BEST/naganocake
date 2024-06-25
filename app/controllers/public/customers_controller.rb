@@ -1,7 +1,5 @@
 class Public::CustomersController < ApplicationController
-
   before_action :authenticate_customer!
-
 
   def show
     @customer = current_customer
@@ -14,7 +12,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to customer_path, notice: '更新が完了しました。'
+      redirect_to @customer, notice: '更新が完了しました。'
     else
       render :edit
     end
@@ -31,12 +29,11 @@ class Public::CustomersController < ApplicationController
     flash[:notice] = "Thank you for the good rating. We hope to see you again."
     redirect_to root_path
   end
-
+  
   private
 
   def customer_params
     params.require(:customer).permit(:name, :email, :password, :password_confirmation)
   end
-
 end
 
