@@ -7,6 +7,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @order.shipping_cost = 800
 
     if params[:order][:select_address] == "0"
       @order.post_code = current_customer.post_code
@@ -60,6 +61,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = current_customer.orders.find(params[:id])
+    @order.shipping_cost = 800
   end
 
   private
