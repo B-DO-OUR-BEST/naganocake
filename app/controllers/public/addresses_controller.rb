@@ -1,4 +1,6 @@
 class Public::AddressesController < ApplicationController
+  before_action :authenticate_customer!
+  
   def index
     @address = current_customer.addresses.new  #フォーム入力用
     @addresses = current_customer.addresses.all  #index用
