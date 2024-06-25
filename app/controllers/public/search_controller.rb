@@ -1,4 +1,5 @@
 class Public::SearchController < ApplicationController
+  
   def index
     @query = params[:query]
     @items = Item.where('name LIKE ?', "%#{@query}%")
