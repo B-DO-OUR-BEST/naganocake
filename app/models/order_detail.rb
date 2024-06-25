@@ -7,4 +7,8 @@ class OrderDetail < ApplicationRecord
   validates :price, presence: true
   validates :amount, presence: true
   validates :making_status, presence: true
+  
+  def subtotal
+    item.with_tax_price * amount  #order/showで使用。
+  end
 end
