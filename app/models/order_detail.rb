@@ -8,6 +8,8 @@ class OrderDetail < ApplicationRecord
   validates :amount, presence: true
   validates :making_status, presence: true
   
+  enum making_status: { pending: 0, in_progress: 1, completed: 2 }
+  
   def subtotal
     item.with_tax_price * amount  #order/showで使用。
   end
