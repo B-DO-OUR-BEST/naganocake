@@ -7,12 +7,12 @@
     <div class="actions text-center">
       <!--f.submitでボタン設定していたのをlink_toに直した-->
       <!--直した理由 link_toはただ表示させるときに使う f.submitは更新や何か変更点がでるときに使う-->
-      <%#= form_with model: @customer, url: customers_information_edit_path, method: :patch do |f| %>
+      <%= form_with model: @customer, url: customers_information_edit_path, method: :patch do |f| %>
       <div class="row">
         <div class="col-1">登録情報</div>
         <div class="col-2"><%= link_to "編集する", customers_information_edit_path, class: "btn btn-lg btn-success", style: "font-size: 1rem;"%></div>
       </div>
-      <%# end %>
+      <% end %>
       
       <p id="notice"></p>
       
@@ -54,13 +54,13 @@
       <p id="notice"></p>
       <div class="row">
         <div class="col-1">配送先</div>
-        <div class="col-2"><%#= link_to "一覧を見る", addresses_path, class: "btn btn-primary btn-lg", style: "font-size: 1rem;" %></div>
+        <div class="col-2"><%= link_to "一覧を見る", addresses_path, class: "btn btn-primary btn-lg", style: "font-size: 1rem;" %></div>
       </div>
       
       <p id="notice"></p>
       <div class="row">
         <div class="col-1">注文履歴</div>
-        <div class="col-2"><%#= link_to "一覧を見る", orders_path, class: "btn btn-primary btn-lg", style: "font-size: 1rem;" %></div>
+        <div class="col-2"><%= link_to "一覧を見る", orders_path, class: "btn btn-primary btn-lg", style: "font-size: 1rem;" %></div>
       </div>
       
     </div>
