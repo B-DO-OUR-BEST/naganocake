@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def new
     @order = Order.new
   end
@@ -8,26 +8,29 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     @order.shipping_cost = 800
-    
+
     if params[:order][:select_address] == "0"
       @order.post_code = current_customer.post_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
+      
     elsif params[:order][:select_address] == "1"
-      @address = Address.find(params[:order][:customer_id]) # orderのcustomer_idカラムでアドレス帳id=xを取得
-      @order.post_code = @address.poset_code
+      @address = Address.find(params[:order][:address_id]) # orderのaddress_idカラムでアドレス帳id=xを取得
+      @order.post_code = @address.post_code
       @order.address = @address.address
       @order.name = @address.name
+      
     elsif params[:order][:select_address] == "2"
       @order.post_code = params[:order][:post_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
+      
     else
       render "new"
     end
-    
+
     @cart_items = current_customer.cart_items.all
-    
+
 
   end
 
@@ -46,11 +49,11 @@ class Public::OrdersController < ApplicationController
       @order_details.making_status = 0
       @order_details.save!
     end
-    
+
     CartItem.destroy_all
     redirect_to thanks_orders_path
   end
-  
+
   def thanks
   end
 
