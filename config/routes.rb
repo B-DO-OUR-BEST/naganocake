@@ -1,76 +1,72 @@
 Rails.application.routes.draw do
-
+  # devise_for を使ってデバイスを設定
   devise_for :customers, controllers: {
-      registrations: 'public/registrations',
-      sessions: 'public/sessions',
+    registrations: 'public/registrations',
+    sessions: 'public/sessions',
   }
 
   devise_for :admin, controllers: {
-      sessions: 'admin/sessions',
+    sessions: 'admin/sessions',
   }
 
+  # 検索のためのルーティング
   get 'search/index'
 
+  # public スコープ内のルーティング定義
   scope module: :public do
+    root "homes#top"
+    get "/about" => "homes#about"
 
-  root "homes#top"
-  get "/about"=>"homes#about"
+    get '/customers/my_page', to: 'customers#show'
 
-  get '/customers/my_page', to: 'customers#show'
-  #ボタンをlink_toにしたことによって不要になりました。そもそもshowにはpatchはいらない
-  #patch '/customers/my_page', to: 'customers#show'
+    get '/customers/information/edit', to: 'customers#edit'
+    patch '/customers/information', to: 'customers#update'
   
-  get '/customers/information/edit', to: 'customers#edit'
-  #↓正しい記述に変更 アプリケーション設計道理になっています。
-  patch '/customers/information', to: 'customers#update'
-  
-  get 'search', to: 'search#index', as: :search
+    # 検索
+    get 'search', to: 'search#index', as: :search
 
-  # get "login", to: "sessions#new"
-  # post "login", to: "sessions#create"
-  # delete "logout", to: "sessions#destroy"
+    # 商品のルーティング
+    resources :items, only: [:index, :show]
 
-    resources :items, only: [:index,:show]
-
+    # 顧客に関するルーティング
     resource :customers do
-      member do
-        get :unsubscribe
-        get :withdraw
-        
-        #patch :information, to: 'customers#update'
-      end
+      get 'unsubscribe' # 退会ページへのルーティング
+      patch 'withdraw' # 退会処理のルーティング
+      
       collection do
         get :my_page
       end
     end
-    resources :cart_items, only: [:index,:update,:create,:destroy] do
+
+    # カートに関するルーティング
+    resources :cart_items, only: [:index, :update, :create, :destroy] do
       collection do
         delete :destroy_all
       end
     end
-    resources :orders, only: [:new,:create,:index,:show] do
+
+    # 注文に関するルーティング
+    resources :orders, only: [:new, :create, :index, :show] do
       collection do
         post :confirm
         get :thanks
       end
     end
+
+    # 住所に関するルーティング
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
+    # ジャンルに関するルーティング
     resources :genres, only: [:show]
-
   end
 
+  # admin スコープ内のルーティング
   namespace :admin do
-
-    # resource :homes, only: [:top]
     get '/' => 'homes#top'
-    resources :items, only: [:index,:new,:create,:show,:edit,:update]
-    resources :genres, only: [:index,:create,:edit,:update]
-    resources :customers, only: [:index,:show,:edit,:update]
-    resources :orders, only: [:show,:update,:index]
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show, :update, :index]
     resources :order_details, only: [:update]
   end
-
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
