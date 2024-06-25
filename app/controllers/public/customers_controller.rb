@@ -1,5 +1,7 @@
 class Public::CustomersController < ApplicationController
+
   before_action :authenticate_customer!
+
 
   def show
     @customer = current_customer
@@ -35,4 +37,6 @@ class Public::CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:name, :email, :password, :password_confirmation)
   end
+
 end
+
