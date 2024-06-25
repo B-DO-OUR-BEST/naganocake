@@ -1,4 +1,4 @@
-# README
+<!--# README-->
 <!--アプリケーション名・簡潔な概要・アプリケーションＵＲＬ-->
 <!--動作がわかるような画像やGif動画-->
 <!--アプリケーションの詳細な説明-->
@@ -12,7 +12,8 @@
 
 ## アプリケーション概要
   プロジェクト名：naganocake  
-  説明：長野県にある小さな洋菓子店「ながのCAKE」の商品を受注販売するためのECサイト開発。（というプログラミングスクールのチーム学習課題です。）  
+  説明：長野県にある小さな洋菓子店「ながのCAKE」の商品を受注販売するためのECサイト開発  
+  （という体の、DMMWEBCAMP(プログラミングスクール)２か月目におけるチーム学習課題です。）  
   
   
 <img src="https://github.com/B-DO-OUR-BEST/naganocake/assets/165782083/cf3bff4f-b97f-4733-a901-e1900bc73ee8">  
@@ -64,3 +65,6 @@
 ## 作者
   g1tka / 29yu03 / sora1270 / yk-sora  
   team name : DO OUR BEST (team B)  
+  
+
+thank you for reading!
