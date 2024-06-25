@@ -1,5 +1,5 @@
 class Admin::OrdersController < ApplicationController
-	 before_action :authenticate_admin!
+before_action :authenticate_admin!
 
   def show
     @order = Order.find(params[:id])
@@ -11,7 +11,9 @@ class Admin::OrdersController < ApplicationController
     @order_details = @order.order_details
     @order.update(order_params)
 
-    if @order.payment_confirmed?
+    # Check if the order status is changed to "payment_confirmed"
+    if @order.status == "payment_confirmed"
+      # Update all order details making status to "pending"
       @order_details.update_all(making_status: :pending)
     end
 
