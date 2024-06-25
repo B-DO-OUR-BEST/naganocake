@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
     get '/customers/information/edit', to: 'customers#edit'
     patch '/customers/information', to: 'customers#update'
-  
+
     # 検索
     get 'search', to: 'search#index', as: :search
 
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resource :customers do
       get 'unsubscribe' # 退会ページへのルーティング
       patch 'withdraw' # 退会処理のルーティング
-      
+
       collection do
         get :my_page
       end
