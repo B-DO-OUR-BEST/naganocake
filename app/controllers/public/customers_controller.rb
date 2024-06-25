@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:withdraw]
+  before_action :authenticate_customer!
 
   def show
     @customer = current_customer
