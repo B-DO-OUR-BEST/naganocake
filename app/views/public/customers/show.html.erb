@@ -8,12 +8,11 @@
       <!--f.submitでボタン設定していたのをlink_toに直した-->
       <!--直した理由 link_toはただ表示させるときに使う f.submitは更新や何か変更点がでるときに使う-->
 
-      <%#= form_with model: @customer, url: customers_information_edit_path, method: :patch do |f| %>
       <div class="row">
         <div class="col-1">登録情報</div>
         <div class="col-2"><%= link_to "編集する", customers_information_edit_path, class: "btn btn-lg btn-success", style: "font-size: 1rem;"%></div>
       </div>
-      <%# end %>
+
       <p id="notice"></p>
 
       <div class="container">

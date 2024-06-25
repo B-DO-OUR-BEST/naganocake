@@ -9,10 +9,10 @@
   </h3>
   <div class="row mt-5 d-flex justify-content-center">
     <div class="col-auto">
-      <%= link_to " 退会しない ", my_page_customers_path, class: "glyphicon glyphicon-home btn btn-primary btn-lg" %>
+      <%= link_to '退会しない', my_page_customers_path(@customer), class: "glyphicon glyphicon-home btn btn-primary btn-lg" %>
     </div>
     <div class="col-auto">
-      <%= link_to " 退会する ", unsubscribe_customers_path, method: :get, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger  btn-lg" %>
+       <%= link_to "退会する", withdraw_customers_path(@customer), method: :patch, data: { confirm: "本当に退会してもよろしいですか？" }, class: "btn btn-danger  btn-lg" %>
     </div>
   </div>
 </div>
