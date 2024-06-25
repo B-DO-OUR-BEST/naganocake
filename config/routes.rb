@@ -18,10 +18,9 @@ Rails.application.routes.draw do
     get "/about" => "homes#about"
 
     get '/customers/my_page', to: 'customers#show'
-    patch '/customers/my_page', to: 'customers#show'
 
     get '/customers/information/edit', to: 'customers#edit'
-    patch '/customers/information/edit', to: 'customers#edit'
+    patch '/customers/information', to: 'customers#update'
   
     # 検索
     get 'search', to: 'search#index', as: :search
@@ -31,12 +30,9 @@ Rails.application.routes.draw do
 
     # 顧客に関するルーティング
     resource :customers do
-
       get 'unsubscribe' # 退会ページへのルーティング
       patch 'withdraw' # 退会処理のルーティング
-      get 'information/edit', to: 'customers#edit' # 顧客情報の編集ページへのルーティング
-      patch :information, to: 'customers#update' # 顧客情報の更新処理のルーティング
-
+      
       collection do
         get :my_page
       end
