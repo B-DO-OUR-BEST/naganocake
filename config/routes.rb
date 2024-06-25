@@ -17,14 +17,13 @@ Rails.application.routes.draw do
   get "/about"=>"homes#about"
 
   get '/customers/my_page', to: 'customers#show'
+  #ボタンをlink_toにしたことによって不要になりました。そもそもshowにはpatchはいらない
   #patch '/customers/my_page', to: 'customers#show'
-  #追加
+
   get '/customers/information/edit', to: 'customers#edit'
-  patch '/customers/information/edit', to: 'customers#edit'
+  #↓正しい記述に変更 アプリケーション設計道理になっています。
+  patch '/customers/information', to: 'customers#update'
 
-
-
-  #追加
   get 'search', to: 'search#index', as: :search
 
   # get "login", to: "sessions#new"
@@ -36,10 +35,8 @@ Rails.application.routes.draw do
       member do
         get :unsubscribe
         get :withdraw
-        get 'information/edit', to: 'customers#edit'
-        patch :information, to: 'customers#update'
 
-
+        #patch :information, to: 'customers#update'
       end
       collection do
         get :my_page
