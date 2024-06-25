@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def new
     @order = Order.new
   end
@@ -8,7 +8,7 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     @order.shipping_cost = 800
-    
+
     if params[:order][:select_address] == "0"
       @order.post_code = current_customer.post_code
       @order.address = current_customer.address
@@ -25,9 +25,9 @@ class Public::OrdersController < ApplicationController
     else
       render "new"
     end
-    
+
     @cart_items = current_customer.cart_items.all
-    
+
 
   end
 
@@ -46,11 +46,11 @@ class Public::OrdersController < ApplicationController
       @order_details.making_status = 0
       @order_details.save!
     end
-    
+
     CartItem.destroy_all
     redirect_to thanks_orders_path
   end
-  
+
   def thanks
   end
 

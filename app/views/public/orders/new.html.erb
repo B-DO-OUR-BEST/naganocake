@@ -1,19 +1,19 @@
 <div class="container">
-  <div class="row mt-3">
-    <div class="col-8 bg-secondary text-center my-3">注文情報入力</div>
+  <div class="row my-3 ml-3">
+    <h5 class="ml-5", style="background-color: #E6E6E6;">　注文情報入力　</h5>
   </div>
 
   <div class="row">
     <div clas="col-10">
       <%= form_with model: Order.new, url: confirm_orders_path, method: :post, local: true do |f| %>
         <strong>支払方法</strong>
-          <div>
+          <div class="ml-5">
             <%#= f.radio_button :payment_method, "credit_card" %>
             <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>
             <%#= f.label :payment_method_credit_card, "クレジットカード" %>
             <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
           </div>
-          <div>
+          <div class="ml-5">
             <%#= f.radio_button :payment_method, "transfer" %>
             <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
             <%#= f.label :payment_method_transfer, "銀行振込" %>
@@ -22,10 +22,12 @@
 
         <strong>お届け先</strong><br/>
           <!--[:select_address]=="0"として設定confirmアクションで分岐-->
-          <%= f.radio_button :select_address, 0, checked: true %>
+          <div class="ml-5">
+            <%= f.radio_button :select_address, 0, checked: true %>
             <%= f.label :own_address, "ご自身の住所" %>
+
               <div class="row">
-                <div class="col offset-1">
+                <div class="col offset-1 mb-3">
                   〒<%= current_customer.post_code %>
                   <%= current_customer.address %><br/>
                   <%= current_customer.last_name %><%= current_customer.first_name %>
@@ -35,7 +37,7 @@
           <%= f.radio_button :select_address, 1 %>
             <%= f.label :registered_address, "登録済み住所から選択" %>
               <div class="row">
-                <div class="col-6 offset-1">
+                <div class="col-6 offset-1 mb-3">
                   <div><%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %></div>
                 </div>
               </div>
@@ -66,9 +68,10 @@
                   <%= f.text_field :name %>
                 </div>
               </div>
-          <div class="col offset-4 mt-2">
+          <div class="col offset-4 mt-3 text-center">
             <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
           </div>
+        </div>
       <% end %>
 
     </div>
